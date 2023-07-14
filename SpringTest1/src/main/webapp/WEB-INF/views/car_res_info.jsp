@@ -11,47 +11,42 @@
 	<title>해당 품목 상세보기</title>
 	<link href="${pageContext.request.contextPath}/resources/css/common.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/resources/css/car_res_info.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/inc/top.css" rel="styleSheet">
-	<link href="${pageContext.request.contextPath}/resources/css/inc/footer.css" rel="styleSheet">
-	<script src="${pageContext.request.contextPath}/resources/js/inc/jquery-3.7.0.js"></script>
+<%-- 	<link href="${pageContext.request.contextPath}/resources/css/inc/top.css" rel="styleSheet"> --%>
+<%-- 	<link href="${pageContext.request.contextPath}/resources/css/inc/footer.css" rel="styleSheet"> --%>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.0.js"></script>
 </head>
 <body>
 	<header>
-	<%--top 탑 활성화시 --%>
+	<%--top 탑 활성화시 css도 살려야함--%>
 <%-- <jsp:include page="../../../inc/top1.jsp"></jsp:include> --%>
 	</header>
 	<%--입력하지 않은 자료 보낼 때--%>
 <%-- 		<input type="hidden" name="car_model" value="${map.car_info.car_model}"/> --%>
 		
-		<section id="sec_con" class="inr car_view">
+		<section id="sec_con" class="inr product_view">
 		<div class="upperContainner">
+		<%-- 슬라이드 쇼 --%>
 			<div class="slide_wrap">
 				<div class="slide_container">
 					<div class="mySlides">
-						<div class="numbertext">1&nbsp;&nbsp;/&nbsp;&nbsp;5</div>
+						<div class="numbertext">1&nbsp;&nbsp;/&nbsp;&nbsp;4</div>
 						<img src="${pageContext.request.contextPath}/resources/upload/car/${map.car_info.car_file_path}/${map.car_info.car_file2}">
 					</div>
 
 					<div class="mySlides">
-						<div class="numbertext">2&nbsp;&nbsp;/&nbsp;&nbsp;5</div>
+						<div class="numbertext">2&nbsp;&nbsp;/&nbsp;&nbsp;4</div>
 						<img src="${pageContext.request.contextPath}/resources/upload/car/${map.car_info.car_file_path}/${map.car_info.car_file3}">
 					</div>
 
 					<div class="mySlides">
-						<div class="numbertext">3&nbsp;&nbsp;/&nbsp;&nbsp;5</div>
+						<div class="numbertext">3&nbsp;&nbsp;/&nbsp;&nbsp;4</div>
 						<img src="${pageContext.request.contextPath}/resources/upload/car/${map.car_info.car_file_path}/${map.car_info.car_file4}">
 					</div>
 
 					<div class="mySlides">
-						<div class="numbertext">4&nbsp;&nbsp;/&nbsp;&nbsp;5</div>
+						<div class="numbertext">4&nbsp;&nbsp;/&nbsp;&nbsp;4</div>
 						<img src="${pageContext.request.contextPath}/resources/upload/car/${map.car_info.car_file_path}/${map.car_info.car_file5}">
 					</div>
-
-					<div class="mySlides">
-						<div class="numbertext">5&nbsp;&nbsp;/&nbsp;&nbsp;5</div>
-						<img src="${pageContext.request.contextPath}/resources/upload/car/${map.car_info.car_file_path}/${map.car_info.car_file6}">
-					</div>
-
 					<a class="prev" onclick="plusSlides(-1)">❮</a> <a class="next"
 						onclick="plusSlides(1)">❯</a>
 				</div>
@@ -73,86 +68,9 @@
 						<img class="demo cursor" src="${pageContext.request.contextPath}/resources/upload/car/${map.car_info.car_file_path}/${map.car_info.car_file5}"
 							onclick="currentSlide(4)">
 					</div>
-					<div class="column">
-						<img class="demo cursor" src="${pageContext.request.contextPath}/resources/upload/car/${map.car_info.car_file_path}/${map.car_info.car_file6}"
-							onclick="currentSlide(5)">
-					</div>
 				</div>
 			</div>
-
-			<div class="view_info">
-
-				<div class="view_cont">
-					<p class="car_comp">${map.car_info.car_company}</p>
-					<div class="car_name">
-						<h4>${map.car_info.car_model}</h4>
-						<p>${map.car_info.car_type}</p>
-					</div>
-					<div class="res_loca">
-						<div class="rent_loca loca_comm">
-							<p>대여할 곳</p>
-							<p>
-								<span class="rt_ico"></span>${map.brc_rent_name}<span> 
-								</span>
-							</p>
-						</div>
-						<div class="rent_arrow">
-							<span></span>
-						</div>
-						<div class="retn_loca loca_comm">
-							<p>반납할 곳</p>
-							<p>
-								<span class="rt_ico"></span> <span>${map.brc_return_name}</span>
-							</p>
-						</div>
-					</div>
-					<div class="res_date">
-						<div class="rent_date_txt date_comm">
-							<p>대여일</p>
-							<span id="rental_date"></span>
-						</div>
-						<div class="rent_date_total">
-							<p>총 대여시간</p>
-							<span id="rental_time_final"></span>
-						</div>
-						<div class="ret_date date_comm">
-							<p>반납일</p>
-							<span id="return_date"></span>
-						</div>
-					</div>
-					<p class="view_amount">
-						  <b><fmt:formatNumber value="${map.rentPrice}" pattern="#,###" />원</b>
-					</p>
-					<a href="resPayment?car_idx=${map.car_idx}
-                                    &res_rental_date=${map.res_rental_date}&res_return_date=${map.res_return_date}
-                                    &brc_rent_name=${map.brc_rent_name}&brc_return_name=${map.brc_return_name}" class="view_res_btn">
-                                    예약하러 가기</a>
-				</div>
-			</div>
-		</div>
-		<script type="text/javascript">							
-		$(document).ready(function () {
-		    timediff();
-		});
-		function timediff()
-		{
-			const dateA = new Date('${map.res_return_date}');
-			const dateB = new Date('${map.res_rental_date}');
-			const diffMSec = dateA.getTime() - dateB.getTime();
-			
-			var diffTime = (dateA.getTime() - dateB.getTime()) / (1000*60*60);
-            $("#rental_time").html(diffTime);
-            rental_day = parseInt(diffTime/24);
-            rental_time = parseInt(diffTime%24);
-            console.log(rental_time);
-            $("#rental_time_final").html(rental_day + "일 " + rental_time + "시간");
-			 
-			
-			var total_money = parseInt(diffTime * (${map.car_info.car_weekdays}/24)); <%--${map.car_info.car_weekend}--%>
-			$("#total_money").html(total_money);
-		}
-		</script>
-		<script>
+			<script>
 			let slideIndex = 1;
 			showSlides(slideIndex);
 
@@ -184,62 +102,87 @@
 				slides[slideIndex - 1].style.display = "block";
 				dots[slideIndex - 1].className += " active";
 				}
+			</script>
+			<%-- 슬라이드쇼 끝 --%>
 			
-			// 0629 경인 추가 ==========
-			//시작 , 반납일 초단위 제거
 			
-			function removeSecond(){
-				let rentalDate = document.querySelector('#rental_date');
-				let returnDate = document.querySelector('#return_date');
-				
-				let rentalD = "${map.res_rental_date}";
-				let returnD = "${map.res_return_date}";
-				rentalDate.innerText = rentalD.slice(0,rentalD.length-3);
-				returnDate.innerText = returnD.slice(0,returnD.length-3);
-			}
-			removeSecond();
-		</script>
+			<div class="view_info">
 
-		<div class="view_more_info more_wrap_box">
-			<p class="view_tit">차량 정보</p>
-			<div class="more_cont">
-				<div class="more_box">
-					<div>
-						<p class="more_icon"></p>
-						<p class="opt_name">차량번호</p>
-						<span>${map.car_info.car_number}</span>
+				<div class="view_cont">
+					<p class="product_catrgory">홈 / 패션의류 / 남성의류 / 바지 / 팬츠 / 청바지 / 블랙야크 남성 기모바지 (33)</p>
+					<div class="product_name">
+						<h4>블랙야크 남성 기모바지 (33)</h4><span class="product_progress">예약중</span>
+						<p>25,000원</p>
 					</div>
-					<div>
-						<p class="more_icon"></p>
-						<p class="opt_name">모델</p>	
-						<span>${map.car_info.car_model}</span>
+					<div class="product_viewStatus">
+					🕐&nbsp; 07-12&nbsp;&nbsp;&nbsp;&nbsp;👁‍🗨&nbsp; 10&nbsp;&nbsp;&nbsp;&nbsp;   ❤️&nbsp;  5
 					</div>
-					<div>
-						<p class="more_icon"></p>
-						<p class="opt_name">연식</p>
-						<span>${map.car_info.car_old}</span>
+					<div class="product_productStatus">
+						상품 상태 : 중고<br>
+						반품가능여부 : 불가<br>
+						배송비 : 배송비 포함<br>
+						거래지역 : 부산시 남구 대연동<br>
+						거래 방법 : 안전페이, 직거래<br>
 					</div>
-					<div>
-						<p class="more_icon"></p>
-						<p class="opt_name">변속타입</p>
-						<span>${map.car_info.car_shift_type}</span>
+					<div class="product_tag">
+						#바지 #바지 #바지 #바지 #바지
 					</div>
-					<div>
-						<p class="more_icon"></p>
-						<p class="opt_name">연료</p>
-						<span>${map.car_info.car_fuel_type}</span>
-					</div>
-					<div>
-						<p class="more_icon"></p>
-						<p class="opt_name">정원</p>
-						<span>${map.car_info.car_riding}인</span>
-					</div>
+					<div class="button_array">
+					<%-- 이후에 IF문 사용해서 찜 버튼 두개로 만들기(해제, 등록) --%>
+					<a href="resPayment?car_idx=${map.car_idx}&res_rental_date=${map.res_rental_date}&res_return_date=${map.res_return_date}
+                             &brc_rent_name=${map.brc_rent_name}&brc_return_name=${map.brc_return_name}" class="favorite_btn">
+                    	♥ 찜 해제
+                    </a>
+                    <a href="resPayment?car_idx=${map.car_idx}&res_rental_date=${map.res_rental_date}&res_return_date=${map.res_return_date}
+                             &brc_rent_name=${map.brc_rent_name}&brc_return_name=${map.brc_return_name}" class="chat_btn">
+                    	1:1 대화톡
+                    </a>
+                    </div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="option_wrap more_wrap_box">
-			<p class="view_tit">옵션 정보</p>
+	<div class="downContainner">
+
+		<div class="view_more_info more_wrap_box">
+			<p class="view_title">상품 정보</p>
+			<div class="more_box">
+				<div>
+				<p>⚠️&nbsp;&nbsp;거래전 주의 사항</p>
+					<br>
+			판매자가 별도의 메신저로 결제링크를 보내거나 직거래(직접송금)을<br>
+			유도하는 경우 사기일 가능성이 높으니 거래를 자제해 주시고<br>
+				<span>중고나라 고객센터로 신고해주시기 바랍니다.</span>
+				</div>
+			</div>
+			<div class="product_content">
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라쏼라
+			쏼라쏼라쏼라쏼라
+			</div>
+		</div>
+		
+		
+		<div class="seller_wrap more_wrap_box">
+			<p class="seller_title">옵션 정보</p>
 			<div class="more_cont">
 				<div class="opt_list">
 					<c:forEach var="car_option" items="${map.car_option}">
@@ -252,6 +195,7 @@
 			</div>
 		</div>
 		
+
 	
 		<div class="review_wrap more_wrap_box">
 			<div class="view_tit_sec">
@@ -332,33 +276,12 @@
 			</div>
 		</div>
 		
-		
-		<div class="ins_wrap more_wrap_box">
-			<p class="view_tit">보험 안내</p>
-			<div class="more_cont">
-				<div class="ins_int">
-					<table>
-						<tr>
-							<th>일반자차</th>
-							<td>면책금 30~50만원 + 휴차보상료(사고 1건만 적용, 차종별 한도 있음)</td>
-						</tr>
-						<tr>
-							<th>미가입</th>
-							<td>사고로 발생되는 모든 차량수리비 및 휴차보상료를 고객께서 부담하셔야 합니다.<br>
-   								<span>타인에 의한 사고가 많은 만큼</span> 만일의 경우를 대비해 자차보험에 가입하시길 권고 드립니다.</td>
-						</tr>
-					</table>
-					<ul class="imp_check">
-						<li>* 모든 자차보험은 사고 1건에 대해서만 적용됩니다.</li>
-						<li>* 대형,수입 등 특이차종의 경우 일반면책만 가입가능</li>
-						<li>* 면책적용 불가사항 (출동서비스, 견인, 체인, 네비게이션, 실내부품, 타이어, 휠, 침수, 12대중과실사고, 미등록운전자사고)</li>
-					</ul>
-				</div>
-			</div>
 		</div>
+		
+		
 	</section>
 	<footer>
-	<%--footer 풋터 활성화 시 --%>
+	<%--footer 풋터 활성화 시 css도 살려야함--%>
 <%-- 		<jsp:include page="../../../inc/footer.jsp"></jsp:include> --%>
 	</footer>
 </body>
