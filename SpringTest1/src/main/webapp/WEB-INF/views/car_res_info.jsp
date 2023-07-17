@@ -182,102 +182,112 @@
 		
 		
 		<div class="seller_wrap more_wrap_box">
-			<p class="seller_title">옵션 정보</p>
-			<div class="more_cont">
-				<div class="opt_list">
-					<c:forEach var="car_option" items="${map.car_option}">
-					<div>
-						<img alt="" src="${pageContext.request.contextPath}/resources/upload/car_options/${car_option.option_image_url}"/>
-						<p>${car_option.option_name}</p>
-					</div>
-					</c:forEach>
-				</div>
-			</div>
-		</div>
-		
 
-	
-		<div class="review_wrap more_wrap_box">
-			<div class="view_tit_sec">
-				<p class="view_tit">고객 리뷰</p>
-				<a href="${pageContext.request.contextPath}/reviewList?pageNum=1&amount=&searchType=carModel&searchKeyword=${map.car_info.car_model}">더보기</a>
+			<div class="seller_profile_wrap">
+				<img class="seller_profile" src="${pageContext.request.contextPath}/resources/img/profile_m.png">
+				<p class="seller_name">꾸미꾸미꾸</p>
+				<p class="seller_Lv">브론즈 Lv1</p>
 			</div>
-			<div class="more_cont">
-				<div class="rev_cont">
-					<ul class=""> 
-					<c:forEach var="reviewListS" items="${map.reviewListS}">
-						<li class="">
-							<span class="write_s"><span>
-												<!-- 별점 구현 -->
-											<c:set var="starLank" value="${reviewListS.rev_star}"/>
-											 <c:choose>
-    											<c:when test="${starLank eq 0}">
-  													<span>★</span>
-													<span>★</span>
-													<span>★</span>
-													<span>★</span>
-													<span>★</span>
-    											</c:when>
-    											<c:when test="${starLank eq 1}">
-  													<span class="fill">★</span>
-													<span>★</span>
-													<span>★</span>
-													<span>★</span>
-													<span>★</span>
-    											</c:when>
-    											<c:when test="${starLank eq 2}">
-  													<span class="fill">★</span>
-													<span class="fill">★</span>
-													<span>★</span>
-													<span>★</span>
-													<span>★</span>
-    											</c:when>
-    											<c:when test="${starLank eq 3}">
-  													<span class="fill">★</span>
-													<span class="fill">★</span>
-													<span class="fill">★</span>
-													<span>★</span>
-													<span>★</span>
-    											</c:when>
-    											<c:when test="${starLank eq 4}">
-  													<span class="fill">★</span>
-													<span class="fill">★</span>
-													<span class="fill">★</span>
-													<span class="fill">★</span>
-													<span>★</span>
-    											</c:when>
-   												 <c:otherwise>
-    												<span class="fill">★</span>
-													<span class="fill">★</span>
-													<span class="fill">★</span>
-	   												<span class="fill">★</span>
-													<span class="fill">★</span>
-												 </c:otherwise>
-											</c:choose>
-											<!-- 별점 구현 -->
-											</span></span>
-							<span class="rev_name">&nbsp;&nbsp;&nbsp;&nbsp; 
-							<c:set var="name"       value="${reviewListS.rev_name}" />
-							<c:set var="totalLength" value="${fn:length(name) }" />
-							<c:set var="first"      value="${fn:substring(name, 0, 1) }" />
-							<c:set var="last"      value="${fn:substring(name, 2, totalLength) }" />
-							<td>
-								<c:if test="${!empty  name}">
-									<c:out value="${first}*${last}"/>
-								</c:if>
-							</td>
-							</span>
-							<span class="rev_txt">${reviewListS.rev_content}</span>
-							<span class="rev_txt_hobertext">${reviewListS.rev_content}</span>
-						</li>
-						</c:forEach>
-					</ul>
+			<div class="seller_products">
+				<p class="seller_products_title">꾸미꾸미꾸님의 상품정보</p>
+				<div class="more_product">
+					<div>
+						<img class="more_product_img" src="${pageContext.request.contextPath}/resources/img/first.jpg">
+						<p class="more_product_name">사제 군장</p>
+						<span>15,000원</span>
+					</div>
+					<div>
+						<img class="more_product_img" src="${pageContext.request.contextPath}/resources/img/second.jpg">
+						<p class="more_product_name">마우스</p>	
+						<span>5,000원</span>
+					</div>
+					<div>
+						<img class="more_product_img" src="${pageContext.request.contextPath}/resources/img/third.jpg">
+						<p class="more_product_name">마우스2</p>
+						<span>3,000원</span>
+					</div>										
+					<div class="review_wrap">
+					<div class="view_tit_sec">
+						<p class="view_tit">고객 리뷰</p>
+						<a href="${pageContext.request.contextPath}/reviewList?pageNum=1&amount=&searchType=carModel&searchKeyword=${map.car_info.car_model}">더보기</a>
+					</div>
+					<div class="more_cont">
+						<div class="rev_cont">
+							<ul class=""> 
+							 <c:forEach var="reviewListS" items="${map.reviewListS}">
+								<li class="">
+									<span class="write_s"><span>
+														<!-- 별점 구현 -->
+													<c:set var="starLank" value="5"/>
+													 <c:choose>
+				  											<c:when test="${starLank eq 0}">
+																	<span>★</span>
+															<span>★</span>
+															<span>★</span>
+															<span>★</span>
+															<span>★</span>
+				  											</c:when>
+				  											<c:when test="${starLank eq 1}">
+																	<span class="fill">★</span>
+															<span>★</span>
+															<span>★</span>
+															<span>★</span>
+															<span>★</span>
+				  											</c:when>
+				  											<c:when test="${starLank eq 2}">
+																	<span class="fill">★</span>
+															<span class="fill">★</span>
+															<span>★</span>
+															<span>★</span>
+															<span>★</span>
+				  											</c:when>
+				  											<c:when test="${starLank eq 3}">
+																	<span class="fill">★</span>
+															<span class="fill">★</span>
+															<span class="fill">★</span>
+															<span>★</span>
+															<span>★</span>
+				  											</c:when>
+				  											<c:when test="${starLank eq 4}">
+																	<span class="fill">★</span>
+															<span class="fill">★</span>
+															<span class="fill">★</span>
+															<span class="fill">★</span>
+															<span>★</span>
+				  											</c:when>
+				 												 <c:otherwise>
+				  												<span class="fill">★</span>
+															<span class="fill">★</span>
+															<span class="fill">★</span>
+				  												<span class="fill">★</span>
+															<span class="fill">★</span>
+														 </c:otherwise>
+													</c:choose>
+													<!-- 별점 구현 -->
+													</span></span>
+									<span class="rev_name">&nbsp;&nbsp;&nbsp;&nbsp; 
+									<c:set var="name"       value="${reviewListS.rev_name}" />
+									<c:set var="totalLength" value="${fn:length(name) }" />
+									<c:set var="first"      value="${fn:substring(name, 0, 1) }" />
+									<c:set var="last"      value="${fn:substring(name, 2, totalLength) }" />
+									<td>
+										<c:if test="${!empty  name}">
+											<c:out value="${first}*${last}"/>
+										</c:if>
+									</td>
+									</span>
+									<span class="rev_txt">${reviewListS.rev_content}</span>
+									<span class="rev_txt_hobertext">${reviewListS.rev_content}</span>
+								</li>
+								</c:forEach>
+							</ul>
+						</div>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
-		
-		</div>
-		
+	</div>
 		
 	</section>
 	<footer>

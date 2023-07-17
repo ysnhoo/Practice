@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class CarItemController {
-	@GetMapping("carInfoList")
+	@GetMapping("carResInfo")
 	public String carInfo(Model model) {
 	    return "car_res_info";
 	}
